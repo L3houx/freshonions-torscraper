@@ -2,12 +2,11 @@
 pony
 PyMySQL
 py-pretty
-pycrypto
 elasticsearch>=5.0.0,<6.0.0
 elasticsearch-dsl>=5.0.0,<6.0.0
 python-dateutil
-txsocksx
 # removed to see if web interface works w/o this
+#txsocksx
 #Twisted
 #numpy
 #scipy
@@ -16,16 +15,18 @@ txsocksx
 # build fails, is it really required?
 #pillow
 #gensim
-tabulate
+# build fails openssl-dev missing
+#crypto
+#pycrypto
+#SHA256
+#tabulate
+#app
+#networkx
+#paramiko
 langdetect
 pycountry
-networkx
 python-memcached
 flask
-app
 timeout_decorator
 pretty
-crypto
-SHA256
-paramiko
 PyPyDispatcher>=2.1.0
