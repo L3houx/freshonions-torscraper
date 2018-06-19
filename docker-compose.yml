@@ -6,8 +6,10 @@ services:
     restart: always
     ports:
       - "8000:8000"
-    environment:
-      - DATABASE_URL=mysql+pymysql://root:root@db/torscraper
+    volumes:
+      - "$(pwd)"/etc:/opt/torscraper/etc:ro
+      - "$(pwd)"/scripts:/opt/torscraper/scripts:ro
+      - "$(pwd)"/lib:/opt/torscraper/lib:ro
     depends_on:
       - db
       - elasticsearch

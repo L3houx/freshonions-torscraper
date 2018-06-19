@@ -176,7 +176,12 @@ If you get something like "Privoxy localhost port forwarding" don't continue, it
 
     ./push.sh someoniondirectory.onion
 
-To start the flask server to see our web interface.
+To start the flask server to see our web interface. First, create a flask secret with:
+
+    mkdir -p etc/private/
+    python3 -c 'import os; print("FLASK_SECRET=\"" + os.urandom(32).decode("ascii", errors="backslashreplace") + "\"")' > etc/private/flask.secret
+
+Then start the Web server with:
 
     ./scripts/web.sh
 

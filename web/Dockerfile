@@ -13,6 +13,4 @@ RUN pip install -r requirements.txt
 
 RUN chmod +x /opt/torscraper/web/docker-entrypoint.sh
 
-EXPOSE 5000
-
-ENTRYPOINT ["/opt/torscraper/web/docker-entrypoint.sh"]
+CMD ["/opt/torscraper/web/docker-entrypoint.sh"]
