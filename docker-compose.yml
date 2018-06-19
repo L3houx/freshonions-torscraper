@@ -1,0 +1,59 @@
+version: '2'
+
+services:
+  web-interface:
+    build: web
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://root:root@db/torscraper
+    depends_on:
+      - db
+      - elasticsearch
+
+  db:
+    image: mariadb:10.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    volumes:
+      - db-data:/var/lib/mysql
+
+  crawler:
+    build: .
+    restart: always
+    depends_on:
+      - db
+      - elasticsearch
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:5.6.10
+    container_name: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:5.6.10
+    environment:
+      SERVER_NAME: kibana
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+
+volumes:
+  es-data:
+    driver: local
+  db-data:
+    driver: local

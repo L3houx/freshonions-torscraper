@@ -1,0 +1,30 @@
+# TODO: slim down the requirements
+pony
+PyMySQL
+py-pretty
+pycrypto
+elasticsearch>=5.0.0,<6.0.0
+elasticsearch-dsl>=5.0.0,<6.0.0
+python-dateutil
+txsocksx
+# removed to see if web interface works w/o this
+#Twisted
+#numpy
+#scipy
+#scikit-learn
+#sklearn
+tabulate
+langdetect
+pycountry
+networkx
+python-memcached
+pillow
+flask
+app
+timeout_decorator
+pretty
+crypto
+SHA256
+gensim
+paramiko
+PyPyDispatcher>=2.1.0
