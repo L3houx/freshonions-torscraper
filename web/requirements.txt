@@ -13,18 +13,19 @@ txsocksx
 #scipy
 #scikit-learn
 #sklearn
+# build fails, is it really required?
+#pillow
+#gensim
 tabulate
 langdetect
 pycountry
 networkx
 python-memcached
-pillow
 flask
 app
 timeout_decorator
 pretty
 crypto
 SHA256
-gensim
 paramiko
 PyPyDispatcher>=2.1.0
