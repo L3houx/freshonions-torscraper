@@ -15,14 +15,13 @@ python-dateutil
 # build fails, is it really required?
 #pillow
 #gensim
-# build fails openssl-dev missing
-#crypto
-#pycrypto
-#SHA256
 #tabulate
 #app
 #networkx
 #paramiko
+crypto
+pycrypto
+SHA256
 langdetect
 pycountry
 python-memcached

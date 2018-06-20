@@ -5,7 +5,7 @@ services:
     build: web
     restart: always
     ports:
-      - "8000:8000"
+      - "8000:5000"
     volumes:
       - ./etc:/opt/torscraper/etc:ro
       - ./scripts:/opt/torscraper/scripts:ro
