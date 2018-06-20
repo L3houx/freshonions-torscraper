@@ -21,7 +21,7 @@ import version
 import email_util
 import banned
 import tor_text
-import portscanner
+import portscanner_utils
 import urllib
 import random
 import sys
@@ -212,7 +212,7 @@ def onion_info(onion):
 			fp_count = len(domain.ssh_fingerprint.domains)
 		links_to   = domain.links_to()
 		links_from = domain.links_from()
-		return render_template('onion_info.html', domain=domain, language=language, scanner=portscanner, OpenPort=OpenPort, paths=paths, emails=emails, bitcoin_addresses=bitcoin_addresses, links_to=links_to, links_from = links_from, fp_count=fp_count)
+		return render_template('onion_info.html', domain=domain, language=language, scanner=portscanner_utils, OpenPort=OpenPort, paths=paths, emails=emails, bitcoin_addresses=bitcoin_addresses, links_to=links_to, links_from = links_from, fp_count=fp_count)
 	else:
 		return render_template('error.html', code=404, message="Onion not found.")
 
@@ -389,7 +389,7 @@ def port_list(ports):
 			port_list.append(int(p.strip()))
 		except ValueError:
 			pass
-	port_list_str = ", ".join(map(lambda p: "%s:%s" % (str(p), portscanner.get_service_name(p)), port_list))
+	port_list_str = ", ".join(map(lambda p: "%s:%s" % (str(p), portscanner_utils.get_service_name(p)), port_list))
 	domains = select(d for d in Domain for op in OpenPort if op.domain==d and op.port in port_list and not d.is_banned)
 	if len(domains) > 0:
 		return render_template('port_list.html', domains=domains, ports=ports, port_list_str = port_list_str)

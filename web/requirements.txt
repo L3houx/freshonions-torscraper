@@ -6,8 +6,6 @@ elasticsearch>=5.0.0,<6.0.0
 elasticsearch-dsl>=5.0.0,<6.0.0
 python-dateutil
 # removed to see if web interface works w/o this
-#txsocksx
-#Twisted
 #numpy
 #scipy
 #scikit-learn

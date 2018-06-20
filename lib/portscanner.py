@@ -1,60 +1,26 @@
 import random
 from datetime import *
+
 from twisted.internet.defer import Deferred
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.internet.protocol import Protocol, ClientFactory
 from twisted.internet.task import react
-
 from txsocksx.client import SOCKS5ClientEndpoint
+from twisted.internet import reactor
+
+from portscanner_utils import PORTS
 from tor_db import *
 
-from twisted.internet import reactor
 TOR_HOST = os.environ['HIDDEN_SERVICE_PROXY_HOST']
 TOR_PORT = int(os.environ['HIDDEN_SERVICE_PROXY_PORT'])
 MAX_TOTAL_CONNECTIONS = 16
 MAX_CONNECTIONS_PER_HOST = 1
-
-PORTS = { 8333  : "bitcoin", 
-          9051  : "bitcoin-control",
-          9333  : "litecoin", 
-          22556 : "dogecoin",
-          6697  : "irc",
-          6667  : "irc",
-          143   : "imap",
-          110   : "pop3",
-          119   : "nntp",
-          22    : "ssh",
-          2222  : "ssh?",
-          23    : "telnet",
-          25    : "smtp",
-          80    : "http",
-          443   : "https",
-          21    : "ftp",
-          5900  : "vnc",
-          27017 : "mongodb",
-          9200  : "elasticsearch",
-          3128  : "squid-proxy?",
-          8080  : "proxy?" ,
-          8118  : "proxy?" ,
-          8000  : "proxy?" ,
-          9878  : "richochet",
-          666   : "hail satan!",
-          31337 : "eleet",
-          1337  : "eleet",
-          69    : "good times",
-          6969  : "double the fun",
-          1234  : "patterns rule",
-          12345 : "patterns rule",
-        }
 
 def pop_or_none(l):
     if len(l) == 0:
         return None
     return l.pop()
 
-
-def get_service_name(port):
-    return PORTS.get(port)
 
 class PortScannerClient(Protocol):
     def connectionMade(self):
