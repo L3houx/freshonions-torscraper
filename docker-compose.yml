@@ -15,20 +15,17 @@ services:
       - elasticsearch
 
   db:
-    image: mariadb:10.2
-    environment:
-      - MYSQL_ROOT_PASSWORD=somethingcomplicated
-      - MYSQL_USER=torscraper
-      - MYSQL_PASSWORD=password
-    volumes:
-      - db-data:/var/lib/mysql
+    build: db
+    # uncomment if you want database to persist
+    #volumes:
+    #  - db-data:/var/lib/mysql
 
-  crawler:
-    build: .
-    restart: always
-    depends_on:
-      - db
-      - elasticsearch
+  #crawler:
+  #  build: .
+  #  restart: always
+  #  depends_on:
+  #    - db
+  #    - elasticsearch
 
   elasticsearch:
     #image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.3.0

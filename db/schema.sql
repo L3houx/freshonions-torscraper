@@ -18,6 +18,7 @@
 --
 -- Table structure for table `bitcoin_address`
 --
+USE tor;
 
 DROP TABLE IF EXISTS `bitcoin_address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
