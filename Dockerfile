@@ -13,6 +13,7 @@ RUN apt-get update && apt-get -y install \
   python-dev \
   libxml2-dev \
   libxslt1-dev \
+  libzstd1-dev \
   && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /opt/torscraper/
 WORKDIR /opt/torscraper

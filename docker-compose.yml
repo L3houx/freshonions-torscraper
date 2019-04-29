@@ -52,6 +52,15 @@ services:
       ELASTICSEARCH_URL: http://elasticsearch:9200
     depends_on:
       - elasticsearch
+    ports:
+      - 5601:5601
+
+  tor-privoxy:
+    restart: always
+    image: dockage/tor-privoxy:latest
+    ports:
+      - "9050:9050" # Tor proxy
+      - "3129:8118" # Privoxy
 
 volumes:
   es-data:
