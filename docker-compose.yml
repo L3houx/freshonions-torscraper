@@ -1,3 +1,4 @@
+#All the containers name can't contain _ (underscore) because scrapy is not able to handle it.
 version: '2'
 
 services:
@@ -13,19 +14,23 @@ services:
     depends_on:
       - db
       - elasticsearch
+    container_name: "freshonions-torscraper-web-interface"
 
   db:
     build: db
     # uncomment if you want database to persist
     #volumes:
     #  - db-data:/var/lib/mysql
+    container_name: "freshonions-torscraper-db"
 
-  #crawler:
-  #  build: .
-  #  restart: always
-  #  depends_on:
-  #    - db
-  #    - elasticsearch
+
+  crawler:
+    build: .
+    restart: always
+    depends_on:
+      - db
+    #  - elasticsearch-test
+    container_name: "freshonions-torscraper-crawler"
 
   elasticsearch:
     #image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.3.0
@@ -42,25 +47,29 @@ services:
     volumes:
       - es-data:/usr/share/elasticsearch/data
     ports:
-      - 9200:9200
+      - 9201:9200
+    container_name: "freshonions-torscraper-elasticsearch"
 
   kibana:
     #image: docker.elastic.co/kibana/kibana-oss:6.3.0
     image: kibana:5.6.10
     environment:
       SERVER_NAME: kibana
-      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_URL: http://freshonions-torscraper-elasticsearch:9200
     depends_on:
       - elasticsearch
     ports:
       - 5601:5601
+    container_name: "freshonions-torscraper-kibana"
 
   tor-privoxy:
     restart: always
-    image: dockage/tor-privoxy:latest
+    build: tor-privoxy
     ports:
       - "9050:9050" # Tor proxy
+      - "9051:9051" # Tor control port
       - "3129:8118" # Privoxy
+    container_name: "freshonions-torscraper-tor-privoxy"
 
 volumes:
   es-data:

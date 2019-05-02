@@ -1,7 +1,7 @@
-export TOR_PROXY_PORT=3129
-export http_proxy=http://localhost:3129
-export TOR_PROXY_HOST=localhost
-export https_proxy=https://localhost:3129
-export SOCKS_PROXY=localhost:9050
-HIDDEN_SERVICE_PROXY_HOST=127.0.0.1
+export TOR_PROXY_PORT=8118
+export http_proxy=http://freshonions-torscraper-tor-privoxy:8118
+export TOR_PROXY_HOST=freshonions-torscraper-tor-privoxy
+export https_proxy=https://freshonions-torscraper-tor-privoxy:8118
+export SOCKS_PROXY=freshonions-torscraper-tor-privoxy:9050
+HIDDEN_SERVICE_PROXY_HOST=freshonions-torscraper-tor-privoxy
 HIDDEN_SERVICE_PROXY_PORT=9090

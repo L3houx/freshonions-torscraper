@@ -1,10 +1,7 @@
-FROM python:2.7
-MAINTAINER Olivier Bilodeau <obilodeau@gosecure.ca>
-# Modified from a Dockerfile by Madison Bahmer <madison.bahmer@istresearch.com>
-# Under the MIT license
-# https://github.com/istresearch/scrapy-cluster/blob/master/docker/crawler/Dockerfile
+FROM docker.elastic.co/elasticsearch/elasticsearch:5.6.10
 
-# os setup
+MAINTAINER Olivier Bilodeau <obilodeau@gosecure.ca>
+
 RUN apt-get update && apt-get -y install \
   python-lxml \
   build-essential \
@@ -19,12 +16,12 @@ RUN mkdir -p /opt/torscraper/
 WORKDIR /opt/torscraper
 
 # install requirements
-COPY requirements.txt /opt/torscraper
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ../requirements.txt /opt/torscraper
+RUN pip install --no-cache-dir -r ../requirements.txt
 RUN pip install --upgrade requests
 
 # move codebase over
-COPY . /opt/torscraper
+COPY ../* /opt/torscraper
 
 ## override settings via localsettings.py
 #COPY docker/crawler/settings.py /usr/src/app/crawling/localsettings.py

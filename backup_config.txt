@@ -1,0 +1,43 @@
+##etc/proxy v
+
+export TOR_PROXY_PORT=3129
+export http_proxy=http://localhost:3129
+export TOR_PROXY_HOST=localhost
+export https_proxy=https://localhost:3129
+export SOCKS_PROXY=localhost:9050
+HIDDEN_SERVICE_PROXY_HOST=127.0.0.1
+HIDDEN_SERVICE_PROXY_PORT=9090
+
+
+
+export TOR_PROXY_PORT=8118
+export http_proxy=http://freshonions-torscraper-tor-privoxy:8118
+export TOR_PROXY_HOST=freshonions-torscraper-tor-privoxy
+export https_proxy=https://freshonions-torscraper-tor-privoxy:8118
+export SOCKS_PROXY=freshonions-torscraper-tor-privoxy:9050
+HIDDEN_SERVICE_PROXY_HOST=freshonions-torscraper-tor-privoxy
+HIDDEN_SERVICE_PROXY_PORT=9090
+
+##etc/proxy ^
+
+##etc/elasticsearch v
+
+ELASTICSEARCH_ENABLED=true
+ELASTICSEARCH_HOST=127.0.0.1
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_TIMEOUT=60
+
+ELASTICSEARCH_ENABLED=true
+ELASTICSEARCH_HOST=freshonions-torscraper-elasticsearch
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_TIMEOUT=60
+
+
+##etc/elasticsearch ^
+
+
+
+DB_HOST=db
+DB_USER=torscraper
+DB_PASS=password
+DB_BASE=tor
