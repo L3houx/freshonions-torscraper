@@ -1,4 +1,4 @@
-#All the containers name can't contain _ (underscore) because scrapy is not able to handle it.
+#Containers' name can't contain _ (underscore) because scrapy is not able to handle it.
 version: '2'
 
 services:
@@ -29,7 +29,7 @@ services:
     restart: always
     depends_on:
       - db
-    #  - elasticsearch-test
+    #  - elasticsearch
     container_name: "freshonions-torscraper-crawler"
 
   elasticsearch:

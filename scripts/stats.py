@@ -1,9 +1,9 @@
- #!/usr/bin/python
+ #!/usr/bin/env python
 from pony.orm import *
 from datetime import *
 from tor_db import *
 from operator import itemgetter
-import sys 
+import sys
 from tabulate import tabulate
 
 @db_session

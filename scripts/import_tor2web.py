@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import json
 import sys
 json_data=open(sys.argv[1]).read()

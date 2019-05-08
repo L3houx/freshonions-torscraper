@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 from gensim import corpora, models
 import gensim
 import gensim.models.ldamodel

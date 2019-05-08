@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import autocategorize.corpus as corpus
 import sys
 print "Building dictionary..."
