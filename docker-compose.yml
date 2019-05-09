@@ -67,9 +67,32 @@ services:
     build: tor-privoxy
     ports:
       - "9050:9050" # Tor proxy
-      - "9051:9051" # Tor control port
       - "3129:8118" # Privoxy
     container_name: "freshonions-torscraper-tor-privoxy"
+
+  tor-privoxy2:
+    restart: always
+    build: tor-privoxy2
+    ports:
+      - "9051:9051" # Tor proxy
+      - "3130:8119" # Privoxy
+    container_name: "freshonions-torscraper-tor-privoxy2"
+
+  tor-privoxy3:
+    restart: always
+    build: tor-privoxy3
+    ports:
+      - "9052:9052" # Tor proxy
+      - "3131:8120" # Privoxy
+    container_name: "freshonions-torscraper-tor-privoxy3"
+
+  tor-privoxy4:
+    restart: always
+    build: tor-privoxy4
+    ports:
+      - "9053:9053" # Tor proxy
+      - "3132:8121" # Privoxy
+    container_name: "freshonions-torscraper-tor-privoxy4"
 
 volumes:
   es-data:

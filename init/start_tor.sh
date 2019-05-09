@@ -14,7 +14,7 @@ if [ ! -d "$BASEDIR/var" ]; then
 fi
 
 #for i in {0..10}
-for i in {1..1}
+for i in {1..4}
 do
     j=$((i+1))
     socks_port=$((base_socks_port+i))
@@ -32,4 +32,4 @@ do
 
 done
 
-haproxy -f $BASEDIR/etc/rotating-tor-proxies.cfg
+#haproxy -f $BASEDIR/etc/rotating-tor-proxies.cfg

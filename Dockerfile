@@ -13,7 +13,8 @@ RUN apt-get update && apt-get -y install \
   python-dev \
   libxml2-dev \
   libxslt1-dev \
-  && rm -rf /var/lib/apt/lists/*
+  haproxy \
+  && rm -rf /var/lib/apt/lists/* \
 RUN mkdir -p /opt/torscraper/
 WORKDIR /opt/torscraper
 
@@ -24,6 +25,11 @@ RUN pip install --upgrade requests
 
 # move codebase over
 COPY . /opt/torscraper
+
+# move haproxy config to haproxy directory
+COPY init/haproxy.cfg /etc/haproxy/haproxy.cfg
+#Need to automate the service start when boot
+
 
 ## override settings via localsettings.py
 #COPY docker/crawler/settings.py /usr/src/app/crawling/localsettings.py
