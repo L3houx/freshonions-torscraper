@@ -14,7 +14,7 @@ RUN apt-get update && apt-get -y install \
   libxml2-dev \
   libxslt1-dev \
   haproxy \
-  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /opt/torscraper/
 WORKDIR /opt/torscraper
 
@@ -43,4 +43,4 @@ COPY init/haproxy.cfg /etc/haproxy/haproxy.cfg
 #CMD ["scrapy", "runspider", "crawling/spiders/link_spider.py"]
 #CMD ["/opt/torscraper/scripts/start.sh"]
 #CMD ["/opt/torscraper/scripts/harvest.sh"]
-CMD ["/opt/torscraper/scripts/sleep.sh"]
+CMD ["/opt/torscraper/scripts/docker_haproxy_harvest_scrape.sh"]

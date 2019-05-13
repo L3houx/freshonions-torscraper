@@ -2,8 +2,8 @@
 DIR=$( cd "$(dirname "$0")" ; pwd -P )
 BASEDIR=$DIR/..
 base_socks_port=9050
-base_http_port=3128 # leave 3128 for HAProxy
-base_control_port=8119
+base_http_port=3129 # leave 3128 for HAProxy
+base_control_port=8118
 # Create data directory if it doesn't exist
 if [ ! -d "data" ]; then
     mkdir "data"
