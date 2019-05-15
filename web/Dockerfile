@@ -8,8 +8,6 @@ RUN mkdir -p /opt/torscraper/web
 COPY . /opt/torscraper/web
 WORKDIR /opt/torscraper/web
 
-RUN mkdir -p /opt/torscraper/etc/private
-
 RUN pip install -r requirements.txt
 
 RUN chmod +x /opt/torscraper/web/docker-entrypoint.sh

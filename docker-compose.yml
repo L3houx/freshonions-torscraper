@@ -29,7 +29,7 @@ services:
     restart: always
     depends_on:
       - db
-    #  - elasticsearch
+      - elasticsearch
     container_name: "freshonions-torscraper-crawler"
 
   elasticsearch:
