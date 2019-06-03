@@ -19,8 +19,8 @@ services:
   db:
     build: db
     # uncomment if you want database to persist
-    #volumes:
-    #  - db-data:/var/lib/mysql
+    volumes:
+      - db-data:/var/lib/mysql
     container_name: "freshonions-torscraper-db"
 
 

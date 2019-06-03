@@ -27,12 +27,42 @@ From the GNU site:
 
 > The GNU Affero General Public License is a modified version of the ordinary GNU GPL version 3. It has one added requirement: if you run a modified program on a server and let other users communicate with it there, your server must also allow them to download the source code corresponding to the modified version running there
 
-## Dependencies
+## Docker installation
+First of all, clone the GitHub project and run the script create_flask_web to generate the secret file used by the web server.
+
+    git clone https://github.com/GoSecure/freshonions-torscraper.git
+    cd freshonions-torscraper/scripts/
+    ./create_flask_secret.sh
+
+Once your flask secet is create, you should see this confirmation message:
+> ('Directory ', '/your/path/freshonions-torscraper/etc/private/', ' Created ')
+Written flask secret to '/your/path/freshonions-torscraper/etc/private/flask.secret'
+
+Now go to the freshonions-torscraper root directory and start the docker containers by doing:
+
+    sudo docker-compose up
+
+The docker-compose command will start 9 different containers.
+* Web service (1)
+* Crawler (1)
+* Database (1)
+* Kibana (1)
+* Elasticsearch (1)
+* Tor-Privoxy (4)
+
+In the crawler container, it has a script that will crawl automatically (docker_haproxy_harvest_scrape.sh). This script restart the haproxy service (repartition of request), start harvest (search all onions site in the list of website that we provide) and after that it scrape all of them (Find bitcoin address, Email, link between onions, and save the data of website to the Elasticsearch and the database). Once this script finishes his execution, it will start over.
+
+** Harvesting takes a lot of time so be patient, It can take up to (45 minutes) to get all onions in the list of website that we provide. **
+
+If you prefer doing it the manual way, follow the procedure below.
+## Manual Installation
+
+### Dependencies
 
 * python
 * tor
 
-## Warning
+### Warning
 This software requires an Elasticsearch version in the 5.x series. As of this writing, the latest is 5.6.6. 6.x is known to be problematic. Also, if you decide to install Kibana or any extra functionalities linked to Elasticsearch, install them with the same version otherwise it won't work.
 
 Do not start too many instances of scraper/crawler because, with only 4 instances of tor proxy, it will be hard to connect to the onion site. If you create more than 3-4 instances, it could become really slow. In this situation,  the crawler will become so slow that they will not be able to crawl pages. So you will not progress with this method. Let the crawler run and you will create a bigger list of valid domains with information in it.
@@ -41,17 +71,17 @@ The Pastebin script works only if you are on the whitelist of Pastebin. If you'r
 
 After booting, be sure that the link between Tor and Privoxy are working. To test it, use these commands.
 
-    curl --socks5-hostname 127.0.0.1:9050 http://http://workingOnionWebsite
+    curl --socks5-hostname 127.0.0.1:9050 http://workingOnionWebsite
     curl --proxy 127.0.0.1:3129 http://workingOnionWebsite
-    
+
 If it didn't work, fix the problem before crawling because all your onions will convert to a "dead" status. You can try to run the script:`start.sh` to reinitialize the links.
 
 ### Tor service
 To use the new version of tor, you should follow these steps: https://www.torproject.org/docs/debian.html.en
 By using the last version of tor, you will be able to crawl the new generation of onions (V3).
 
-If you used a version older than 0.3.x, you can have a problem with the update to 0.3.x. I was missing two libraries: 
- 
+If you used a version older than 0.3.x, you can have a problem with the update to 0.3.x. I was missing two libraries:
+
  * libssl1.1
  * libzstd1
 

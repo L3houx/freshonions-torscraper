@@ -41,6 +41,4 @@ COPY init/haproxy.cfg /etc/haproxy/haproxy.cfg
 #
 ## run the spider
 #CMD ["scrapy", "runspider", "crawling/spiders/link_spider.py"]
-#CMD ["/opt/torscraper/scripts/start.sh"]
-#CMD ["/opt/torscraper/scripts/harvest.sh"]
 CMD ["/opt/torscraper/scripts/docker_haproxy_harvest_scrape.sh"]
