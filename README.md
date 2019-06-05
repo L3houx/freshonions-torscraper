@@ -50,6 +50,19 @@ The docker-compose command will start 9 different containers.
 * Elasticsearch (1)
 * Tor-Privoxy (4)
 
+**Do these steps once (only when all containers are built for the first time).**
+Once all the containers are started, open another terminal and connect to the crawler container.
+
+    sudo docker exec -it freshonions-torscraper-crawler /bin/bash
+
+Now you supposed to have a terminal in the container. So we will run the script elasticsearch_migrate.sh
+
+    cd scripts
+    ./elasticsearch_migrate.sh
+
+It will Initialize Elasticsearch database.
+
+
 In the crawler container, it has a script that will crawl automatically (docker_haproxy_harvest_scrape.sh). This script restart the haproxy service (repartition of request), start harvest (search all onions site in the list of website that we provide) and after that it scrape all of them (Find bitcoin address, Email, link between onions, and save the data of website to the Elasticsearch and the database). Once this script finishes his execution, it will start over.
 
 ** Harvesting takes a lot of time so be patient, It can take up to (45 minutes) to get all onions in the list of website that we provide. **
